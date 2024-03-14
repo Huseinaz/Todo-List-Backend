@@ -84,3 +84,19 @@
       font-size: 16px;
     }
   }
+
+  .link-container {
+    text-align: center;
+    padding-top: 20px;
+    color: #20302f;
+  }
+  
+  .link-container a {
+    color: #20302f;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .link-container a:hover {
+    text-decoration: underline;
+  }

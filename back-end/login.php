@@ -2,9 +2,9 @@
 
 include('connection.php');
 
-$username = $_POST['username'];
-$email = $_POST['email'];
-$password = $_POST['password'];
+$username = isset($_POST['username']) ? $_POST['username'] : null;
+$email = isset($_POST['email']) ? $_POST['email'] : null;
+$password =  isset($_POST['password']) ? $_POST['password'] : null;
 
 $query = $connection ->prepare('SELECT id,username,email,password
 FROM users
@@ -25,7 +25,7 @@ $num_rows = $query->num_rows();
 if ($num_rows == 0) {
     $response['message'] = "user not found";
 } else {
-    if (password_verify($hashed_password)) {
+    if (password_verify($password, $hashed_password)) {
         $response['message'] = "logged in";
         $response['user_id'] = $id;
         $response['username'] = $username;

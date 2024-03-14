@@ -5,19 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles/common/colors.css" />
     <link rel="stylesheet" href="../styles/common/utilities.css" />
-    <link rel="stylesheet" href="../styles/pageStyles/login.css" />
+    <link rel="stylesheet" href="../styles/pageStyles/index.css" />
     <title>Signup</title>
   </head>
   <body>
     <section class="login flex center column">
       <div class="login-blur flex center column">
-        <h1>Login</h1>
+        <h1>Signup</h1>
         <!-- <label for="username">Username</label> -->
-        <input type="text" placeholder="Username or Email" id="username" />
+        <input type="text" placeholder="Username" id="username" />
+        <!-- <label for="username">Email</label> -->
+        <input type="email" placeholder="Email" id="email" />
         <!-- <label for="password">Password</label> -->
         <input type="password" placeholder="Password" id="password" />
 
-        <button id="login">Log In</button>
+        <button id="login">Signup</button>
+        
+        <div class="link-container">
+          <p>
+            Already have an account?
+            <a href="../../index.html" class="sign-in-link">Log In</a>
+          </p>
+        </div>
       </div>
     </section>
 
