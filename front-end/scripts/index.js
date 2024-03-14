@@ -1,32 +1,42 @@
-const btn = document.getElementById("btn");
-const container = document.getElementById("container");
-const todoInput = document.getElementById("todoInput");
+const loginForm = document.getElementById("login");
 
-btn.addEventListener("click", function () {
-  const element = `<div class="todo-item">
-                    <p>${todoInput.value}</p>
-                    <button class="delete-btn">Delete</button>
-                    <button class="done-btn">Done</button>
-                  </div>`;
+loginForm.addEventListener("click", function (event) {
+  event.preventDefault();
 
-  container.innerHTML += element;
-  todoInput.value = "";
+  const usernameOrEmail = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
 
-  const deleteBtns = document.querySelectorAll(".delete-btn");
-  deleteBtns.forEach(btn => {
-    btn.addEventListener("click", function () {
-      btn.parentNode.remove();
+  const isEmail = usernameOrEmail.includes("@");
+
+  if (usernameOrEmail.trim() === "" || password.trim() === "") {
+    alert("Username/Email and Password are required!");
+    return;
+  }
+
+  const formData = new FormData();
+
+  if (isEmail) {
+    formData.append("email", usernameOrEmail);
+  } else {
+    formData.append("username", usernameOrEmail);
+  }
+
+  formData.append("password", password);
+
+  fetch("http://localhost/todo-list-backend/back-end/login.php", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.message === "logged in") {
+        alert("Login successful!");
+      } else {
+        alert("Login failed. Please check your credentials.");
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      alert("An error occurred. Please try again later.");
     });
-  });
-
-  const doneBtns = document.querySelectorAll(".done-btn");
-  doneBtns.forEach(btn => {
-    btn.addEventListener("click", function () {
-      const todoItem = btn.parentNode;
-      const todoText = todoItem.querySelector("p");
-      todoText.textContent += " is Completed";
-
-      btn.disabled = true;
-    });
-  });
-})
+});
