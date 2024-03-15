@@ -6,7 +6,7 @@
   }
   
   body {
-    background: #eee;
+    background: url("../../assets/images/bg.jpg") no-repeat center center/cover;
   }
   
   .hero {
@@ -19,7 +19,7 @@
     top: 10px;
     font-size: 50px;
     padding: 10px 0;
-    color: #000000;
+    color: #ffffff;
   }
   
   input {

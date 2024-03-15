@@ -24,7 +24,8 @@ signupForm.addEventListener("click", function (event) {
     .then((response) => response.json())
     .then((data) => {
       if (data.message === "user created") {
-        alert("Account created successfully!");
+        localStorage.setItem("username", username);
+        window.location.href = `http://127.0.0.1:5500/front-end/pages/todo.html?username=${encodeURIComponent(username)}`;
       } else if (data.message === "user allready exist") {
         alert("Username or email already exists. Please choose another.");
       } else {

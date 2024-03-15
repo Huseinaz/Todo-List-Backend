@@ -30,7 +30,8 @@ loginForm.addEventListener("click", function (event) {
     .then((response) => response.json())
     .then((data) => {
       if (data.message === "logged in") {
-        alert("Login successful!");
+        localStorage.setItem("authenticatedUser", data.user_id);
+        window.location.href = `http://127.0.0.1:5500/front-end/pages/todo.html?id=${encodeURIComponent(data.user_id)}`;
       } else {
         alert("Login failed. Please check your credentials.");
       }
